@@ -3,172 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#38bdf8">
 <meta name="robots" content="noindex,nofollow">
-<title>秒看视频 · 发布页</title>
+<meta name="theme-color" content="#e8f5ff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230ea5e9'/%3E%3Cpath d='M25 20l18 12-18 12z' fill='white'/%3E%3C/svg%3E">
+<title>秒看视频 · 永久发布页</title>
 <style>
-:root{
-  --sky-50:#f2faff; --sky-100:#e3f4ff; --sky-200:#c5e8fd; --sky-300:#8ed4fa;
-  --sky-400:#38bdf8; --sky-500:#0ea5e9; --sky-600:#0284c7; --sky-700:#075985;
-  --ink:#0b3a53; --ink-2:#4a7c96; --line:rgba(14,165,233,.16);
-  --shadow:0 18px 40px -18px rgba(2,132,199,.35);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{min-height:100%;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(900px 520px at 50% -12%,#bfe9ff 0%,rgba(191,233,255,0) 62%),
-    radial-gradient(700px 420px at 88% 8%,#d8f1ff 0%,rgba(216,241,255,0) 55%),
-    linear-gradient(180deg,#f0f9ff 0%,#f8fdff 46%,#ffffff 100%);
-  min-height:100dvh;
-  display:flex; align-items:center; justify-content:center;
-  padding:40px 20px calc(40px + env(safe-area-inset-bottom));
-}
-.wrap{width:100%;max-width:430px;position:relative;z-index:1;animation:in .7s cubic-bezier(.22,1,.36,1) both;}
-@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-/* 头部 */
-header{text-align:center;margin-bottom:30px;}
-.logo{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:30px;font-weight:800;letter-spacing:-.5px;
-  background:linear-gradient(120deg,#0ea5e9,#38bdf8 55%,#22d3ee);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.logo .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(140deg,#38bdf8,#0ea5e9);
-  box-shadow:0 0 0 5px rgba(56,189,248,.16);flex:none;}
-.sub{margin-top:10px;font-size:13px;color:var(--ink-2);letter-spacing:.3px;}
-.sub kbd{
-  font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--sky-700);
-  background:#fff;border:1px solid var(--line);border-bottom-width:2px;
-  padding:2px 7px;border-radius:6px;margin:0 2px;
-}
-
-/* 地址卡 */
-.card{
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border:1px solid var(--line);border-radius:22px;
-  padding:26px 22px 22px;box-shadow:var(--shadow);
-  text-align:center;position:relative;overflow:hidden;
-}
-.card::before{
-  content:'';position:absolute;inset:0 0 auto;height:4px;
-  background:linear-gradient(90deg,#7dd3fc,#38bdf8,#0ea5e9,#38bdf8,#7dd3fc);
-}
-.label{font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--sky-600);
-  text-transform:uppercase;margin-bottom:14px;}
-.addr{
-  display:block;font-size:27px;font-weight:800;letter-spacing:-.6px;
-  color:var(--sky-700);text-decoration:none;line-height:1.25;word-break:break-all;
-  transition:.25s;
-}
-.addr:hover{color:var(--sky-500);}
-.addr small{font-size:14px;font-weight:600;color:var(--sky-400);}
-
-.btns{display:flex;gap:10px;margin-top:22px;}
-.btn{
-  flex:1;height:50px;border-radius:14px;border:0;cursor:pointer;
-  font-size:15px;font-weight:700;font-family:inherit;
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  text-decoration:none;transition:transform .16s,box-shadow .25s,background .25s;
-}
-.btn:active{transform:scale(.97);}
-.btn-primary{
-  color:#fff;background:linear-gradient(135deg,#38bdf8,#0284c7);
-  box-shadow:0 12px 24px -10px rgba(2,132,199,.75);
-}
-.btn-primary:hover{box-shadow:0 16px 30px -10px rgba(2,132,199,.85);}
-.btn-ghost{color:var(--sky-700);background:#fff;border:1.5px solid var(--sky-200);}
-.btn-ghost:hover{background:var(--sky-50);border-color:var(--sky-300);}
-
-/* 下载 */
-.dl{
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  margin-top:14px;padding:18px 22px;border-radius:18px;text-decoration:none;
-  color:var(--ink);background:#fff;border:1px solid var(--line);
-  box-shadow:0 10px 26px -18px rgba(2,132,199,.6);transition:.22s;
-}
-.dl:hover{border-color:var(--sky-300);transform:translateY(-1px);}
-.dl-l{display:flex;flex-direction:column;gap:3px;}
-.dl-t{font-size:15px;font-weight:700;color:var(--sky-700);}
-.dl-s{font-size:12px;color:var(--ink-2);}
-.dl-arrow{
-  width:38px;height:38px;border-radius:50%;flex:none;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  color:#0c3f5c;
+  background:linear-gradient(180deg,#e6f4ff 0%,#d8eeff 42%,#eff9ff 78%,#ffffff 100%);
   display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#e0f3ff,#c9ebff);color:var(--sky-600);
+  padding:28px 20px calc(28px + env(safe-area-inset-bottom));
+  min-height:100dvh;overflow-x:hidden;
 }
-.dl-arrow svg{width:18px;height:18px;}
 
-footer{margin-top:26px;text-align:center;font-size:11.5px;color:#8fb4c7;line-height:1.9;}
+/* ── 天空：云 + 光晕 ── */
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.sun{position:absolute;top:-120px;right:-90px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(186,230,253,.55) 38%,rgba(186,230,253,0) 68%);
+  filter:blur(6px);}
+.glow-b{position:absolute;bottom:-160px;left:-120px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(125,211,252,.55) 0%,rgba(125,211,252,0) 70%);filter:blur(20px);}
+.cloud{position:absolute;border-radius:50%;background:#fff;filter:blur(26px);opacity:.85;}
+.c1{width:260px;height:96px;top:12%;left:-14%;animation:drift1 46s ease-in-out infinite alternate;}
+.c2{width:200px;height:76px;top:32%;right:-16%;background:#f0faff;animation:drift2 58s ease-in-out infinite alternate;}
+.c3{width:320px;height:110px;bottom:8%;left:8%;background:#eaf7ff;opacity:.7;animation:drift1 72s ease-in-out infinite alternate-reverse;}
+@keyframes drift1{from{transform:translate3d(0,0,0)}to{transform:translate3d(70px,-18px,0)}}
+@keyframes drift2{from{transform:translate3d(0,0,0)}to{transform:translate3d(-60px,22px,0)}}
 
-/* 复制成功提示 */
+/* ── 卡片 ── */
+.card{
+  position:relative;z-index:1;width:100%;max-width:400px;
+  background:rgba(255,255,255,.74);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:28px;
+  padding:34px 26px 26px;
+  box-shadow:0 30px 70px -28px rgba(12,116,180,.42),0 2px 10px rgba(12,116,180,.06);
+  animation:rise .7s cubic-bezier(.22,1,.36,1) both;
+  overflow:hidden;
+  text-align:center;
+}
+.card::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1.5px;
+  background:linear-gradient(90deg,transparent,rgba(56,189,248,.85),transparent);}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+
+.mark{
+  width:58px;height:58px;margin:0 auto 16px;border-radius:19px;
+  background:linear-gradient(140deg,#7dd3fc 0%,#38bdf8 45%,#0284c7 100%);
+  box-shadow:0 12px 24px -10px rgba(2,132,199,.75),inset 0 1px 0 rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;
+}
+.mark svg{width:24px;height:24px;margin-left:3px;}
+
+h1{font-size:27px;font-weight:700;letter-spacing:.5px;color:#0b3a53;}
+h1 .sub{display:inline-block;margin-left:7px;font-size:12px;font-weight:600;letter-spacing:1px;
+  color:#0369a1;background:#fff;border:1px solid rgba(56,189,248,.55);box-shadow:0 2px 8px -3px rgba(2,132,199,.35);
+  padding:3px 9px;border-radius:20px;vertical-align:middle;transform:translateY(-3px);}
+
+.tip{margin-top:10px;font-size:13px;color:#6b93ad;letter-spacing:.2px;}
+.tip b{color:#0284c7;font-weight:600;}
+
+/* ── 地址 ── */
+.addr{
+  display:flex;align-items:center;gap:10px;margin-top:24px;padding:15px 16px;
+  background:linear-gradient(180deg,rgba(232,246,255,.95),rgba(224,242,254,.8));
+  border:1px solid rgba(125,211,252,.5);border-radius:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+}
+.addr .host{flex:1;text-align:left;font-size:17px;font-weight:700;letter-spacing:.4px;
+  color:#075985;font-family:ui-monospace,"SF Mono",Consolas,monospace;overflow:hidden;text-overflow:ellipsis;}
+.copy-btn{
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:5px;
+  height:32px;padding:0 12px;border:1px solid rgba(56,189,248,.5);border-radius:11px;
+  background:rgba(255,255,255,.8);color:#0284c7;font-size:12.5px;font-weight:600;cursor:pointer;
+  transition:.18s;font-family:inherit;
+}
+.copy-btn:hover{background:#fff;border-color:#38bdf8;}
+.copy-btn:active{transform:scale(.96);}
+.copy-btn svg{width:13px;height:13px;opacity:.9;}
+
+/* ── 按钮 ── */
+.go{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:14px;height:54px;border-radius:17px;text-decoration:none;
+  background:linear-gradient(135deg,#38bdf8 0%,#0ea5e9 52%,#0284c7 100%);
+  color:#fff;font-size:16px;font-weight:700;letter-spacing:.6px;
+  box-shadow:0 16px 30px -12px rgba(2,132,199,.75),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .16s,box-shadow .16s,filter .16s;
+}
+.go:hover{filter:brightness(1.04);box-shadow:0 18px 34px -12px rgba(2,132,199,.85),inset 0 1px 0 rgba(255,255,255,.4);}
+.go:active{transform:translateY(1px) scale(.99);}
+.go svg{width:17px;height:17px;opacity:.95;}
+
+.status{margin-top:18px;display:inline-flex;align-items:center;gap:9px;font-size:12px;color:#7ea6bd;}
+.status .dot{width:7px;height:7px;border-radius:50%;background:#cbd5e1;transition:.3s;}
+.status .dot.ok{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.16);}
+.status .dot.fail{background:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,.16);}
+
+footer{margin-top:22px;padding-top:18px;border-top:1px solid rgba(125,211,252,.28);
+  font-size:11.5px;line-height:1.95;color:#8aa9bb;}
+footer b{color:#5f8aa5;font-weight:600;}
+
 .toast{
-  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
-  background:rgba(7,89,133,.94);color:#fff;font-size:13px;font-weight:600;
-  padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;
-  transition:.3s;backdrop-filter:blur(6px);z-index:9;
+  position:fixed;left:50%;bottom:36px;transform:translate(-50%,14px);
+  background:rgba(11,58,83,.92);color:#fff;font-size:13px;padding:10px 18px;border-radius:14px;
+  opacity:0;pointer-events:none;transition:.28s;z-index:9;backdrop-filter:blur(8px);
 }
-.toast.on{opacity:1;transform:translate(-50%,0);}
+.toast.show{opacity:1;transform:translate(-50%,0);}
 
-@media(max-width:380px){
-  .addr{font-size:23px;}
-  .logo{font-size:26px;}
-  .btns{flex-direction:column;}
+@media (max-width:360px){
+  .card{padding:28px 20px 22px;border-radius:24px;}
+  h1{font-size:24px;}
+  .addr .host{font-size:15px;}
+  .go{height:50px;font-size:15px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="logo"><span class="dot"></span>秒看视频</div>
-    <p class="sub">永久发布页 · 按 <kbd>Ctrl</kbd>+<kbd>D</kbd> 收藏</p>
-  </header>
-
-  <main class="card">
-    <div class="label">当前发布地址</div>
-    <a class="addr" href="https://mksp1080.top">mksp1080.top<small>/</small></a>
-    <div class="btns">
-      <a class="btn btn-primary" href="https://mksp1080.top">打开网站</a>
-      <button class="btn btn-ghost" id="copyBtn" type="button">复制地址</button>
-    </div>
-  </main>
-
-  <footer>唯一发布页 · 请勿相信其他来源的安装包<br>最后更新 2026-11-18</footer>
-
+<div class="sky">
+  <div class="sun"></div>
+  <div class="glow-b"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
 </div>
+
+<main class="card">
+  <div class="mark">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13l11-6.5z"/></svg>
+  </div>
+
+  <h1>秒看视频<span class="sub">永久发布页</span></h1>
+  <p class="tip">请认准本页地址，按 <b>Ctrl+D</b> 收藏防失联</p>
+
+  <div class="addr">
+    <span class="host" id="host">mksp1080.top</span>
+    <button class="copy-btn" id="copyBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/>
+      <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>
+      <span>复制</span>
+    </button>
+  </div>
+
+  <a class="go" id="go" href="https://mksp1080.top" rel="noopener">
+    打开网站
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+         stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+  </a>
+
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">正在检测服务状态…</span></div>
+
+  <footer>
+    本页为唯一发布入口 · 请勿相信其他来源的安装包<br>
+    最后更新 <b>2026-11-18</b>
+  </footer>
+</main>
 
 <div class="toast" id="toast">地址已复制</div>
 
 <script>
 (function () {
-  var addr = 'https://mksp1080.top/';
+  var host = 'mksp1080.top';
   var toast = document.getElementById('toast');
-  var t = null;
-  function show() {
-    toast.classList.add('on');
+  var t;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
     clearTimeout(t);
-    t = setTimeout(function () { toast.classList.remove('on'); }, 1600);
+    t = setTimeout(function () { toast.classList.remove('show'); }, 1600);
   }
+
   document.getElementById('copyBtn').addEventListener('click', function () {
-    var done = function () { show(); };
+    var text = host;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(addr).then(done, fallback);
+      navigator.clipboard.writeText(text).then(function () { showToast('地址已复制'); },
+        function () { fallback(); });
     } else { fallback(); }
+
     function fallback() {
       var ta = document.createElement('textarea');
-      ta.value = addr;
+      ta.value = text;
       ta.style.position = 'fixed';
       ta.style.opacity = '0';
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand('copy'); done(); } catch (e) {}
+      try { document.execCommand('copy'); showToast('地址已复制'); }
+      catch (e) { showToast('复制失败，请长按选中'); }
       document.body.removeChild(ta);
     }
   });
+
+  /* 服务状态检测：no-cors 探一下主域名，拿不到状态码但能判断是否可达 */
+  var dot = document.getElementById('dot');
+  var txt = document.getElementById('statusText');
+  var ctrl = new AbortController();
+  var timer = setTimeout(function () { ctrl.abort(); }, 6000);
+  fetch('https://' + host + '/?_t=' + Date.now(), { mode: 'no-cors', cache: 'no-store', signal: ctrl.signal })
+    .then(function () { dot.className = 'dot ok'; txt.textContent = '服务正常'; })
+    .catch(function () { dot.className = 'dot fail'; txt.textContent = '当前网络访问受限，可换网络重试'; })
+    .finally(function () { clearTimeout(timer); });
 })();
 </script>
 </body>
