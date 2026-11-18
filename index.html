@@ -3,312 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#38bdf8">
 <meta name="robots" content="noindex,nofollow">
-<title>秒看视频 · 永久发布页</title>
+<title>秒看视频 · 发布页</title>
 <style>
-:root {
-    --bg:        #f5f5f7;
-    --bg-card:   #ffffff;
-    --bg-item:   #f9f9fb;
-    --border:    rgba(0,0,0,0.07);
-    --border-h:  rgba(180,140,0,0.35);
-    --gold:      #c9980a;
-    --gold-dim:  rgba(201,152,10,0.08);
-    --gold-light:rgba(201,152,10,0.12);
-    --text:      #1a1a1e;
-    --text-dim:  #aaaab8;
-    --text-mid:  #6b6b7e;
-    --ok:        #1a9e45;
-    --fail:      #d93025;
-    --ok-glow:   rgba(26,158,69,0.25);
-    --fail-glow: rgba(217,48,37,0.25);
-    --radius:    14px;
-    --radius-sm: 8px;
+:root{
+  --sky-50:#f2faff; --sky-100:#e3f4ff; --sky-200:#c5e8fd; --sky-300:#8ed4fa;
+  --sky-400:#38bdf8; --sky-500:#0ea5e9; --sky-600:#0284c7; --sky-700:#075985;
+  --ink:#0b3a53; --ink-2:#4a7c96; --line:rgba(14,165,233,.16);
+  --shadow:0 18px 40px -18px rgba(2,132,199,.35);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'PingFang SC','Microsoft YaHei','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
-.wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:60px 24px 48px;}
-header{text-align:center;margin-bottom:48px;animation:fadeUp .6s ease both;}
-.logo{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-weight:700;font-size:52px;letter-spacing:-1px;color:var(--gold);line-height:1;display:inline-block;}
-.logo::after{content:'';display:block;width:32px;height:3px;background:var(--gold);border-radius:2px;margin:10px auto 0;opacity:0.5;}
-.notice{margin-top:18px;font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:8px;}
-.notice kbd{font-family:ui-monospace,Consolas,monospace,monospace;font-size:11px;background:#fff;border:1px solid rgba(0,0,0,0.1);border-bottom-width:2px;color:var(--text-mid);padding:2px 7px;border-radius:5px;letter-spacing:0.5px;}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);animation:fadeUp .6s ease both;}
-.card:nth-child(2){animation-delay:.07s;}.card:nth-child(3){animation-delay:.14s;}.card:nth-child(4){animation-delay:.21s;}.card:nth-child(5){animation-delay:.28s;}
-.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.section-title{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;}
-.section-title::before{content:'';width:3px;height:14px;background:var(--gold);border-radius:2px;flex-shrink:0;}
-.dns-banner{background:linear-gradient(135deg,#fffbef 0%,#fff8e1 100%);border:1.5px solid rgba(201,152,10,0.3);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;animation:fadeUp .6s ease both;animation-delay:.02s;}
-.dns-banner-top{display:flex;align-items:flex-start;gap:14px;}
-.dns-icon{width:40px;height:40px;border-radius:10px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.dns-icon svg{width:20px;height:20px;fill:white;}
-.dns-title{font-size:15px;font-weight:700;color:#7a5500;line-height:1.3;}
-.dns-sub{font-size:13px;color:#a07020;margin-top:4px;line-height:1.5;}
-.dns-badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:100px;margin-left:6px;vertical-align:middle;}
-.dns-servers{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
-.dns-chip{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(201,152,10,0.25);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;transition:border-color .2s,box-shadow .2s;}
-.dns-chip:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(201,152,10,0.15);}
-.dns-chip-name{font-weight:600;color:#7a5500;}
-.dns-chip-val{font-family:ui-monospace,Consolas,monospace,monospace;font-size:12px;color:var(--text-mid);}
-.dns-guide-toggle{margin-top:14px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--gold);cursor:pointer;user-select:none;width:fit-content;}
-.dns-guide-toggle svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s;}
-.dns-guide-toggle.open svg{transform:rotate(180deg);}
-.platform-panels{display:none;}
-.platform-panels.open{display:block;}
-.platform-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.ptab{font-size:12px;font-weight:600;color:var(--text-mid);background:var(--bg-item);border:1px solid var(--border);border-radius:100px;padding:5px 14px;cursor:pointer;transition:all .2s;}
-.ptab:hover{color:var(--gold);border-color:var(--border-h);}
-.ptab.active{background:var(--gold);color:#fff;border-color:var(--gold);}
-.panel{display:none;}.panel.active{display:block;}
-.steps{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.step{display:flex;gap:12px;align-items:flex-start;}
-.step-num{width:22px;height:22px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,152,10,0.25);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.step-text{font-size:13px;line-height:1.6;color:var(--text-mid);}
-.step-text b{color:var(--text);font-weight:600;}
-code{font-family:ui-monospace,Consolas,monospace,monospace;font-size:12px;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.06);border-radius:4px;padding:1px 6px;color:#7a5500;}
-.step-note{font-size:12px;color:var(--text-dim);margin-top:4px;padding-left:34px;}
-.btn-check{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:12px;font-weight:500;color:var(--text-mid);background:var(--bg-item);border:1px solid var(--border);border-radius:100px;padding:5px 14px;cursor:pointer;transition:color .2s,border-color .2s,background .2s;white-space:nowrap;}
-.btn-check:hover:not(:disabled){color:var(--gold);border-color:var(--border-h);background:var(--gold-dim);}
-.btn-check:disabled{opacity:.45;cursor:not-allowed;}
-.url-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
-.url-item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bg-item);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;text-decoration:none;transition:border-color .2s,background .2s,transform .15s,box-shadow .15s;}
-.url-item:hover{border-color:var(--border-h);background:#fff;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,0.07);}
-.url-info{min-width:0;}
-.url-host{font-family:ui-monospace,Consolas,monospace,monospace;font-size:13px;font-weight:500;color:var(--text);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.url-label{font-size:11px;color:var(--text-dim);margin-top:3px;display:block;}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,0.1);flex-shrink:0;transition:background .35s,box-shadow .35s;}
-.dot.ok{background:var(--ok);box-shadow:0 0 8px var(--ok-glow);}
-.dot.fail{background:var(--fail);box-shadow:0 0 8px var(--fail-glow);}
-.dot.checking{background:var(--gold);animation:pulse 1s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
-.info-list{display:flex;flex-direction:column;}
-.info-row{display:flex;flex-direction:column;gap:6px;padding:16px 0;border-bottom:1px solid var(--border);}
-.info-row:first-child{padding-top:0;}.info-row:last-child{border:none;padding-bottom:0;}
-.info-label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);}
-.info-text{font-size:14px;line-height:1.65;color:var(--text-mid);}
-.info-text.alert{color:var(--fail);font-weight:500;}
-a.link{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,152,10,0.25);transition:border-color .2s;}
-a.link:hover{border-color:var(--gold);}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.tags a{font-size:12px;color:var(--text-mid);background:var(--bg-item);border:1px solid var(--border);border-radius:6px;padding:4px 10px;text-decoration:none;transition:color .2s,border-color .2s,background .2s;}
-.tags a:hover{color:var(--gold);border-color:var(--border-h);background:var(--gold-dim);}
-/* 加载占位 */
-.url-skeleton{height:56px;background:var(--bg-item);border:1px solid var(--border);border-radius:var(--radius-sm);animation:shimmer 1.2s ease-in-out infinite;}
-@keyframes shimmer{0%,100%{opacity:.5;}50%{opacity:1;}}
-/* GitHub 永久条目 */
-.github-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;background:linear-gradient(135deg,#fffbef 0%,#fff8e1 100%);border:1.5px solid rgba(201,152,10,0.4);border-radius:var(--radius-sm);padding:16px;grid-column:1/-1;transition:box-shadow .2s,transform .15s;}
-.github-item:hover{box-shadow:0 4px 20px rgba(201,152,10,0.18);transform:translateY(-1px);}
-.gh-badge{display:inline-flex;align-items:center;background:var(--gold);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 9px;border-radius:100px;}
-.btn-bookmark{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:12px;font-weight:600;background:var(--gold);color:#fff;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;transition:background .2s,transform .1s;white-space:nowrap;}
-.btn-bookmark:hover{background:#e0ac10;transform:scale(1.04);}
-.btn-visit{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:12px;font-weight:500;color:var(--gold);background:transparent;border:1px solid rgba(201,152,10,0.4);border-radius:8px;padding:6px 14px;text-decoration:none;white-space:nowrap;transition:background .2s,border-color .2s;}
-.btn-visit:hover{background:var(--gold-dim);border-color:var(--gold);}
-footer{text-align:center;padding:32px 0 0;font-size:12px;color:var(--text-dim);letter-spacing:.03em;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:600px){.wrap{padding:40px 16px;}.logo{font-size:42px;}.url-grid{grid-template-columns:1fr;}.dns-servers{flex-direction:column;}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{min-height:100%;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 520px at 50% -12%,#bfe9ff 0%,rgba(191,233,255,0) 62%),
+    radial-gradient(700px 420px at 88% 8%,#d8f1ff 0%,rgba(216,241,255,0) 55%),
+    linear-gradient(180deg,#f0f9ff 0%,#f8fdff 46%,#ffffff 100%);
+  min-height:100dvh;
+  display:flex; align-items:center; justify-content:center;
+  padding:40px 20px calc(40px + env(safe-area-inset-bottom));
+}
+.wrap{width:100%;max-width:430px;position:relative;z-index:1;animation:in .7s cubic-bezier(.22,1,.36,1) both;}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-.mix-note{font-size:12px;color:var(--text-mid);margin-top:10px;line-height:1.7;}
-.dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
-@media(max-width:560px){.dl-grid{grid-template-columns:1fr;}}
-.dl-btn{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:var(--radius-sm);border:1px solid var(--border-h);background:var(--gold-dim);text-decoration:none;transition:.2s;}
-.dl-btn:hover{background:var(--gold-light);border-color:var(--gold);}
-.dl-btn .t{font-size:14px;font-weight:700;color:var(--gold);}
-.dl-btn .s{font-size:11px;color:var(--text-mid);word-break:break-all;}
-.dl-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.dl-meta span{font-size:11px;padding:4px 9px;border-radius:20px;background:var(--bg-item);border:1px solid var(--border);color:var(--text-mid);}
-.dl-meta span b{color:var(--text);font-weight:600;}
-.direct-banner{background:linear-gradient(135deg,#fff5f5 0%,#ffecec 100%);border:1.5px solid rgba(217,48,37,0.25);border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;animation:fadeUp .6s ease both;}
-.direct-title{font-size:14px;font-weight:700;color:#b3261e;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
-.direct-body{font-size:13px;color:#7a2a24;line-height:1.8;}
-.direct-body code{background:#fff;border:1px solid rgba(217,48,37,0.2);padding:3px 8px;border-radius:6px;font-family:ui-monospace,Consolas,monospace;font-size:13px;color:#b3261e;font-weight:700;user-select:all;}
-footer{text-align:center;margin-top:32px;font-size:12px;color:var(--text-dim);line-height:2;}
+/* 头部 */
+header{text-align:center;margin-bottom:30px;}
+.logo{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:30px;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(120deg,#0ea5e9,#38bdf8 55%,#22d3ee);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.logo .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(140deg,#38bdf8,#0ea5e9);
+  box-shadow:0 0 0 5px rgba(56,189,248,.16);flex:none;}
+.sub{margin-top:10px;font-size:13px;color:var(--ink-2);letter-spacing:.3px;}
+.sub kbd{
+  font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--sky-700);
+  background:#fff;border:1px solid var(--line);border-bottom-width:2px;
+  padding:2px 7px;border-radius:6px;margin:0 2px;
+}
+
+/* 地址卡 */
+.card{
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:22px;
+  padding:26px 22px 22px;box-shadow:var(--shadow);
+  text-align:center;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,#7dd3fc,#38bdf8,#0ea5e9,#38bdf8,#7dd3fc);
+}
+.label{font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--sky-600);
+  text-transform:uppercase;margin-bottom:14px;}
+.addr{
+  display:block;font-size:27px;font-weight:800;letter-spacing:-.6px;
+  color:var(--sky-700);text-decoration:none;line-height:1.25;word-break:break-all;
+  transition:.25s;
+}
+.addr:hover{color:var(--sky-500);}
+.addr small{font-size:14px;font-weight:600;color:var(--sky-400);}
+
+.btns{display:flex;gap:10px;margin-top:22px;}
+.btn{
+  flex:1;height:50px;border-radius:14px;border:0;cursor:pointer;
+  font-size:15px;font-weight:700;font-family:inherit;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  text-decoration:none;transition:transform .16s,box-shadow .25s,background .25s;
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{
+  color:#fff;background:linear-gradient(135deg,#38bdf8,#0284c7);
+  box-shadow:0 12px 24px -10px rgba(2,132,199,.75);
+}
+.btn-primary:hover{box-shadow:0 16px 30px -10px rgba(2,132,199,.85);}
+.btn-ghost{color:var(--sky-700);background:#fff;border:1.5px solid var(--sky-200);}
+.btn-ghost:hover{background:var(--sky-50);border-color:var(--sky-300);}
+
+/* 下载 */
+.dl{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:14px;padding:18px 22px;border-radius:18px;text-decoration:none;
+  color:var(--ink);background:#fff;border:1px solid var(--line);
+  box-shadow:0 10px 26px -18px rgba(2,132,199,.6);transition:.22s;
+}
+.dl:hover{border-color:var(--sky-300);transform:translateY(-1px);}
+.dl-l{display:flex;flex-direction:column;gap:3px;}
+.dl-t{font-size:15px;font-weight:700;color:var(--sky-700);}
+.dl-s{font-size:12px;color:var(--ink-2);}
+.dl-arrow{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#e0f3ff,#c9ebff);color:var(--sky-600);
+}
+.dl-arrow svg{width:18px;height:18px;}
+
+footer{margin-top:26px;text-align:center;font-size:11.5px;color:#8fb4c7;line-height:1.9;}
+
+/* 复制成功提示 */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:rgba(7,89,133,.94);color:#fff;font-size:13px;font-weight:600;
+  padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;
+  transition:.3s;backdrop-filter:blur(6px);z-index:9;
+}
+.toast.on{opacity:1;transform:translate(-50%,0);}
+
+@media(max-width:380px){
+  .addr{font-size:23px;}
+  .logo{font-size:26px;}
+  .btns{flex-direction:column;}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-    <div class="logo">秒看视频</div>
-    <div class="notice">按 <kbd>Ctrl + D</kbd> 收藏本页 · 防止失联</div>
-</header>
+  <header>
+    <div class="logo"><span class="dot"></span>秒看视频</div>
+    <p class="sub">永久发布页 · 按 <kbd>Ctrl</kbd>+<kbd>D</kbd> 收藏</p>
+  </header>
 
-<div class="direct-banner">
-    <div class="direct-title">⛔ 本页打不开怎么办</div>
-    <div class="direct-body">
-        用手机浏览器手动输入 <code>154.201.81.41:1688</code>（不用域名、不用 HTTPS，域名被墙也能进）。<br>
-        进不去就换手机流量 / 换浏览器（夸克、Chrome、Edge）再试一次。
+  <main class="card">
+    <div class="label">当前发布地址</div>
+    <a class="addr" href="https://mksp1080.top">mksp1080.top<small>/</small></a>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://mksp1080.top">打开网站</a>
+      <button class="btn btn-ghost" id="copyBtn" type="button">复制地址</button>
     </div>
-</div>
+  </main>
 
-<div class="card" id="mod-official">
-    <div class="card-head">
-        <div class="section-title">发布渠道</div>
-        <button class="btn-check" onclick="checkModule('mod-official')">检测状态</button>
-    </div>
-    <div class="url-grid" id="grid-official"></div>
-</div>
+  <a class="dl" href="https://mksp1080.top/mksp_2.1.2.apk">
+    <span class="dl-l">
+      <span class="dl-t">下载最新版</span>
+      <span class="dl-s">v2.1.2 · 68.4 MB</span>
+    </span>
+    <span class="dl-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+           stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 12 5 5 5-5"/><path d="M4 20h16"/></svg>
+    </span>
+  </a>
 
-<div class="card">
-    <div class="card-head">
-        <div class="section-title">APP 下载</div>
-    </div>
-    <div class="dl-meta" id="dlMeta"></div>
-    <div class="dl-grid" id="dlGrid"></div>
-    <div class="mix-note">
-        · 两个下载地址内容完全一样，优先点第一个；域名打不开就用第二个（IP 直连）。<br>
-        · 装完可以在 APP 里「我的 → 关于」核对版本号，下载后建议核对 MD5。
-    </div>
-</div>
-
-<div class="card" id="mod-dynamic">
-    <div class="card-head">
-        <div class="section-title">动态地址清单</div>
-        <button class="btn-check" onclick="checkModule('mod-dynamic')">检测状态</button>
-    </div>
-    <div class="url-grid" id="grid-dynamic"></div>
-    <div class="mix-note">
-        · APP 启动时会自动读取这两份清单（任意一份能用就行）。<br>
-        · 清单里每行一个地址，纯文本，用浏览器打开可以直接看。
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-head">
-        <div class="section-title">使用说明</div>
-    </div>
-    <div class="info-list">
-        <div class="info-row">
-            <span class="info-label">推荐浏览器</span>
-            <div class="info-text">夸克浏览器 / Chrome / Edge（自带内核的 App 内打开可能被拦）</div>
-        </div>
-        <div class="info-row">
-            <span class="info-label">下载不了</span>
-            <div class="info-text">换 IP 直连地址重试；或先关掉代理 / VPN 再下载</div>
-        </div>
-        <div class="info-row">
-            <span class="info-label">旧版本</span>
-            <div class="info-text">建议始终用本页的最新版本，旧版可能连不上服务器</div>
-        </div>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-head">
-        <div class="section-title">服务与支持</div>
-    </div>
-    <div class="info-list">
-        <div class="info-row">
-            <span class="info-label">问题反馈</span>
-            <div class="info-text">APP 内「我的 → 意见反馈」提交，处理最快</div>
-        </div>
-        <div class="info-row">
-            <span class="info-label">地址失效</span>
-            <div class="info-text">先看本页「发布渠道」的 IP 直连地址，再回来下载新版本</div>
-        </div>
-    </div>
-</div>
-
-<footer>
-    本页为唯一发布页，请勿相信其他来源的安装包<br>
-    最后更新：2026-11-18 · 当前版本 2.1.2
-</footer>
+  <footer>唯一发布页 · 请勿相信其他来源的安装包<br>最后更新 2026-11-18</footer>
 
 </div>
+
+<div class="toast" id="toast">地址已复制</div>
 
 <script>
-/* ── 配置（XOR 混淆，避免明文域名被爬虫扫走） ── */
-const _K = 'sk2026';
-function xd(s, k) {
-    return s.split(',').map((n, i) => String.fromCharCode(parseInt(n, 10) ^ k.charCodeAt(i % k.length))).join('');
-}
-
-/* 发布渠道 */
-const _OFFICIAL = [
-    { u: xd('27,31,70,64,65,12,92,68,70,81,92,78,6,2,91,30,85,95,7,3,71,82,28,95,28,68', _K), label: 'GitHub 永久地址 · 推荐收藏', github: true },
-    { u: xd('27,31,70,64,65,12,92,68,95,91,65,70,66,91,10,0,28,66,28,27', _K), label: '主域名' },
-    { u: xd('27,31,70,64,8,25,92,90,7,4,28,4,67,90,28,8,3,24,71,90,8,1,4,14,75', _K),     label: 'IP 直连（域名被墙时用）' }
-];
-
-/* 动态地址清单 */
-const _DYNAMIC = [
-    { u: xd('27,31,70,64,65,12,92,68,95,91,65,70,66,91,10,0,28,66,28,27,29,87,87,66,93,31,74,68', _K), label: '清单 A（域名）' },
-    { u: xd('27,31,70,64,8,25,92,90,7,4,28,4,67,90,28,8,3,24,71,90,8,1,4,14,75,68,85,85,70,24,7,19,70', _K),     label: '清单 B（IP 直连）' }
-];
-
-/* APP 下载 */
-const _APP = {
-    ver: '2.1.2',
-    size: '68.4 MB',
-    md5: '4e674f2352e1ce5540366589a8e33aed',
-    date: '2026-11-18',
-    urls: [
-        { u: xd('27,31,70,64,65,12,92,68,95,91,65,70,66,91,10,0,28,66,28,27,29,93,89,69,3,52,0,30,3,24,65,69,83,64,89', _K), t: '下载最新版', s: '域名直链' },
-        { u: xd('27,31,70,64,8,25,92,90,7,4,28,4,67,90,28,8,3,24,71,90,8,1,4,14,75,68,95,91,65,70,44,89,28,1,28,4,93,10,66,91', _K),     t: '下载最新版', s: 'IP 直连（备用）' }
-    ]
-};
-
-/* ── 渲染 ── */
-const isHttps = location.protocol === 'https:';
-
-function item(url, label, github) {
-    const host = url.replace(/^https?:\/\/(www\.)?/, '');
-    const dot = '<span class="dot" data-u="' + url + '"></span>';
-    const badge = github
-        ? '<span class="gh-badge">⭐ 永久可用</span>'
-        : '';
-    return '<a class="url-item' + (github ? ' github-item' : '') + '" href="' + url + '" target="_blank" rel="noopener">' +
-        '<div class="url-info"><span class="url-host">' + host + '</span>' +
-        '<span class="url-label">' + label + ' ' + badge + '</span></div>' + dot + '</a>';
-}
-
-function render(id, list) {
-    const el = document.getElementById(id);
-    el.innerHTML = list.map(x => item(x.u, x.label, x.github)).join('');
-}
-
-function renderApp() {
-    document.getElementById('dlMeta').innerHTML =
-        '<span>最新版本 <b>' + _APP.ver + '</b></span>' +
-        '<span>大小 <b>' + _APP.size + '</b></span>' +
-        '<span>更新 <b>' + _APP.date + '</b></span>' +
-        '<span>MD5 <b>' + _APP.md5 + '</b></span>';
-    document.getElementById('dlGrid').innerHTML = _APP.urls.map(x =>
-        '<a class="dl-btn" href="' + x.u + '" target="_blank" rel="noopener">' +
-        '<span class="t">' + x.t + ' · ' + _APP.ver + '</span>' +
-        '<span class="s">' + x.s + ' — ' + x.u.replace(/^https?:\/\//, '') + '</span></a>').join('');
-}
-
-/* ── 状态检测：no-cors + 超时。https 页面无法探测 http 地址（混合内容），标记为「点击打开」 ── */
-async function probe(url, dot) {
-    if (isHttps && url.startsWith('http://')) {
-        dot.className = 'dot';
-        dot.title = '需点击打开（https 页面无法自动探测 http 地址）';
-        return;
+(function () {
+  var addr = 'https://mksp1080.top/';
+  var toast = document.getElementById('toast');
+  var t = null;
+  function show() {
+    toast.classList.add('on');
+    clearTimeout(t);
+    t = setTimeout(function () { toast.classList.remove('on'); }, 1600);
+  }
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var done = function () { show(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = addr;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
     }
-    dot.className = 'dot checking';
-    dot.title = '检测中…';
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 6000);
-    try {
-        await fetch(url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now(),
-                    { mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
-        dot.className = 'dot ok'; dot.title = '可访问';
-    } catch (e) {
-        dot.className = 'dot fail'; dot.title = '当前网络不可访问';
-    } finally { clearTimeout(t); }
-}
-
-function checkModule(id) {
-    document.querySelectorAll('#' + id + ' .dot').forEach(d => probe(d.dataset.u, d));
-}
-
-render('grid-official', _OFFICIAL);
-render('grid-dynamic', _DYNAMIC);
-renderApp();
-checkModule('mod-official');
-checkModule('mod-dynamic');
+  });
+})();
 </script>
 </body>
 </html>
